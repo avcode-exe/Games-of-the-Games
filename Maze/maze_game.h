@@ -2,7 +2,9 @@
 #define MAZE_GAME_H
 
 #include <vector>
-#include <set> // Include the set header
+#include <set>
+
+// #define DEBUG
 
 class Maze { // A square maze
 private:
@@ -19,7 +21,10 @@ public:
 
     Maze(int size); // Constructor
     void generate_maze(int x, int y); // Generates the maze using recursive randomized Prim's Algorithm
+    
+    #ifdef DEBUG
     void print_maze_DEBUG_ONLY(); // Prints the maze to the console (DEBUG_ONLY)
+    #endif
 };
 
 #endif
