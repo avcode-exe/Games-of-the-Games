@@ -6,11 +6,7 @@
 #include <stack>
 #include <ncurses.h>
 
-extern Player player; // Declare the global player instance
-
-#ifdef DEBUG
-#include <iostream> // DEBUG_ONLY
-#endif
+extern Player player;
 
 /**
  * @brief Constructs a Maze object with a specified size.
@@ -82,15 +78,3 @@ void Maze::display_maze(int screen_size_y, int line_pointer) {
     }
     refresh();
 }
-
-#ifdef DEBUG
-void Maze::print_maze_DEBUG_ONLY() {
-    for (auto &i : maze) {
-        for (auto &j : i) {
-            if (j == PATH) std::cout << "  ";
-            else std::cout << "▓▓";
-        }
-        std::cout << std::endl;
-    }
-}
-#endif

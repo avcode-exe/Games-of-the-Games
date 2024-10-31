@@ -4,15 +4,13 @@
 #include <string>
 #include <algorithm>
 
-// #define COMPLETE
-
 void display_menu(std::vector<std::string> games) {
-    std::cout << "Welcome to Games of the Games!" << std::endl;
+    std::cout << "\nWelcome to Games of the Games!" << std::endl;
     std::cout << "Select a game (q or Q to quit):" << std::endl;
     for (size_t i = 0; i < games.size(); i++) {
         std::cout << i + 1 << ". " << games[i] << std::endl;
     }
-    std::cout << "Enter your choice: ";
+    std::cout << "\nEnter your choice: ";
 }
 
 int main() {
@@ -25,6 +23,7 @@ int main() {
     while (true) {
         display_menu(games);
         std::cin >> choice;
+        std::cout << "--------------------------------" << std::endl;
         if (choice == "q" || choice == "Q") {
             break;
         } else if (choice < "1" || choice > "4") {
@@ -32,23 +31,27 @@ int main() {
         } else {
             if (choice == "1") {
                 player.game_state = 1;
+                std::cout << "-------Entering Maze Game-------\n" << std::endl;
                 maze_main();
+                std::cout << "\n-------Exiting Maze Game-------" << std::endl;
             } else if (choice == "2") {
                 player.game_state = 2;
-                #ifdef COMPLETE
+                std::cout << "-------Entering Minesweeper Game-------\n" << std::endl;
                 minesweeper_main();
-                #endif
+                std::cout << "\n-------Exiting Minesweeper Game-------" << std::endl;
             } else if (choice == "3") {
                 player.game_state = 3;
-                #ifdef COMPLETE
+                std::cout << "-------Entering 2048 Game-------\n" << std::endl;
                 main_2048();
-                #endif
+                std::cout << "\n-------Exiting 2048 Game-------" << std::endl;
             } else if (choice == "4") {
                 player.game_state = 4;
-                #ifdef COMPLETE
+                std::cout << "-------Entering Hangman Game-------\n" << std::endl;
                 hangman_main();
-                #endif
+                std::cout << "\n-------Exiting Hangman Game-------" << std::endl;
             }
         }
     }
+    std::cout << "Thanks for playing!" << std::endl;
+    return 0;
 }

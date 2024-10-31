@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player player; // Define the global player instance
+Player player;
 
 void Player::reset() {
     game_state = 0;
