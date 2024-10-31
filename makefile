@@ -1,6 +1,6 @@
 CXX = g++
 CPPFLAGS = -pedantic-errors -Werror -std=c++17 -fPIE -I. -I./Maze -I./Player
-LDFLAGS = -lncurses -lpthread
+LDFLAGS = -lncursesw -lpthread
 
 # Directories
 SRC_DIR = .

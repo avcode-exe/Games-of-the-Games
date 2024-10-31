@@ -9,12 +9,14 @@ class Maze { // A square maze
 private:
     int _PATH = 0; // Represents a path
     int _WALL = 1; // Represents a wall
+    std::pair<int, int> _START = {1, 0}; // Starting point of the maze
 
 public:
     int maze_size; // The size of the maze
     int start_x; // The x-coordinate of the starting point of the maze
     int start_y; // The y-coordinate of the starting point of the maze
-    std::vector<std::vector<int>> maze; // The maze grid
+    std::vector<std::vector<int>> maze_map; // The maze grid
+    std::vector<int> _END; // Ending point of the maze
 
     Maze(int size); // Constructor
     void generate_maze(int x, int y); // Generates the maze using recursive randomized Prim's Algorithm

@@ -2,8 +2,10 @@
 #include <iostream>
 #include <thread>
 #include <ncurses.h>
+#include <locale.h>
 
-void maze_main() { // Main function for maze game
+void maze_main() {
+    setlocale(LC_ALL, "");
     extern Player player;
     player.player_x_maze = 0;
     player.player_y_maze = 1;
@@ -38,29 +40,39 @@ void maze_main() { // Main function for maze game
             if (player.player_y_maze - line_pointer < screen_size_y / 2 && line_pointer > 0) {
                 line_pointer--;
             }
-            if (player.player_y_maze > 0 && maze.maze[player.player_y_maze - 1][player.player_x_maze] != 1) {
+            if (player.player_y_maze > 0 && maze.maze_map[player.player_y_maze - 1][player.player_x_maze] != 1) {
                 player.player_y_maze--;
             }
         } else if (user_input == 's') {
-            if (player.player_y_maze > screen_size_y / 2 + line_pointer && line_pointer + screen_size_y < maze.maze.size()) {
+            if (player.player_y_maze > screen_size_y / 2 + line_pointer && line_pointer + screen_size_y < maze.maze_map.size()) {
                 line_pointer++;
             }
-            if (maze.maze[player.player_y_maze + 1][player.player_x_maze] != 1) {
+            if (maze.maze_map[player.player_y_maze + 1][player.player_x_maze] != 1) {
                 player.player_y_maze++;
             }
         } else if (user_input == 'a') {
-            if (maze.maze[player.player_y_maze][player.player_x_maze - 1] != 1) {
+            if (maze.maze_map[player.player_y_maze][player.player_x_maze - 1] != 1) {
                 player.player_x_maze--;
             }
         } else if (user_input == 'd') {
-            if (maze.maze[player.player_y_maze][player.player_x_maze + 1] != 1) {
+            if (maze.maze_map[player.player_y_maze][player.player_x_maze + 1] != 1) {
                 player.player_x_maze++;
             }
         }
         maze.display_maze(screen_size_y, line_pointer);
         refresh();
-        if (player.player_y_maze + 1 >= maze.maze.size()) {
-            break;
+        if (player.player_x_maze == maze._END[0] + 1 && player.player_y_maze == maze._END[1] - 1) {
+            clear();
+            printw("Congratulations! You have reached the end of the maze.");
+            refresh();
+            while (true) {
+                user_input = getch();
+                if (user_input == ERR) {
+                    continue;
+                } else if (user_input == 'x') {
+                    break;
+                }
+            }
         }
         user_input = getch();
         if (user_input == ERR) {
