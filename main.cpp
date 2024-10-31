@@ -1,5 +1,4 @@
 #include "game_header.h"
-
 #include <iostream>
 #include <vector>
 #include <string>
