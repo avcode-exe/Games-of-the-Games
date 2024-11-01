@@ -9,14 +9,22 @@ void maze_main() {
     extern Player player;
     player.player_x_maze = 0;
     player.player_y_maze = 1;
+    player.player_maze_win = false;
 
     int screen_size_x;
     int screen_size_y;
     char user_input;
     int line_pointer = 0;
     int size = 0;
-    std::cout << "Enter the size of the maze: ";
-    std::cin >> size;
+    while (true) {
+        std::cout << "Enter the size of the maze: ";
+        std::cin >> size;
+        if (size < 3) {
+            std::cout << "Size must be at least 3." << std::endl;
+        } else {
+            break;
+        }
+    }
 
     Maze maze(size);
     maze.generate_maze(maze.start_x, maze.start_y);
@@ -63,16 +71,11 @@ void maze_main() {
         refresh();
         if (player.player_x_maze == maze._END[0] + 1 && player.player_y_maze == maze._END[1] - 1) {
             clear();
-            printw("Congratulations! You have reached the end of the maze.");
+            player.player_maze_win = true;
+            printw("Congratulations! You have reached the end of the maze.\nPress any key to exit.");
             refresh();
-            while (true) {
-                user_input = getch();
-                if (user_input == ERR) {
-                    continue;
-                } else if (user_input == 'x') {
-                    break;
-                }
-            }
+            getch();
+            break;
         }
         user_input = getch();
         if (user_input == ERR) {

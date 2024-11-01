@@ -35,3 +35,6 @@
 bin/
 obj/
 lib/
+.idea/
+.vscode/
+build/

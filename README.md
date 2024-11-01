@@ -6,14 +6,14 @@ This project is a collection of games that I have created. The games are written
 
 | Game Name | Status |
 | :---: | :---: |
-| Maze Game | Underdevelopment |
-| Minesweeper | Planned |
+| Maze Game | Completed |
+| Minesweeper | Under-development |
 | Hangman | Planned |
 | 2048 | Planned |
 
 # Installation and Compilation
 
-**Current only support on linux**
+**Currently only supported on Linux**
 
 To compile the games, you need to have a C++ compiler installed on your machine. You can use any C++ compiler of your choice. I have used g++ compiler to compile the games.
 
@@ -50,6 +50,60 @@ git checkout <branch-name>
 
 Once you have switched to the branch, you can compile the program as mentioned above.
 
+Alternatively, you can use CMake to build the project. Follow these steps:
+
+1. Create a build directory:
+```bash
+mkdir build
+cd build
+```
+
+2. Run CMake to configure the project and generate the build files:
+```bash
+cmake ..
+```
+
+3. Build the project using the generated build files:
+```bash
+cmake --build .
+```
+
+4. Run the compiled executable:
+```bash
+./games-of-the-games
+```
+or
+```bash
+cmake --build . --target run
+```
+
+To build the project using CMake with precompiled headers, shared libraries, and dependency files, follow these steps:
+
+1. Create a build directory:
+```bash
+mkdir build
+cd build
+```
+
+2. Run CMake to configure the project and generate the build files with precompiled headers, shared libraries, and dependency files:
+```bash
+cmake -DUSE_PCH=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_DEPENDS_USE_COMPILER=ON ..
+```
+
+3. Build the project using the generated build files:
+```bash
+cmake --build .
+```
+
+4. Build the project using the generated build files:
+```bash
+./games-of-the-games
+```
+or
+```bash
+cmake --build . --target run
+```
+
 # List of Features
 
 **Important**: The features that are not in the `main` branch are not listed here, and in the future, the development of the features may be terminated.
@@ -59,6 +113,10 @@ Once you have switched to the branch, you can compile the program as mentioned a
 * The game has a maze that the player needs to solve.
 * The player can move the character using the WSAD keys.
 * The maze was generated randomly using the Depth-First Search algorithm.
+
+# Credit
+
+Some of the games in this project (maze and minewseeper) are based on the origin project (https://github.com/avcode-exe/ENGG1340-Group-19-Project). Thanks for the contributors of that project!
 
 # License
 
