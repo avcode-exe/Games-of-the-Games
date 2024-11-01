@@ -72,16 +72,10 @@ void maze_main() {
         if (player.player_x_maze == maze._END[0] + 1 && player.player_y_maze == maze._END[1] - 1) {
             clear();
             player.player_maze_win = true;
-            printw("Congratulations! You have reached the end of the maze.");
+            printw("Congratulations! You have reached the end of the maze.\nPress any key to exit.");
             refresh();
-            while (true) {
-                user_input = getch();
-                if (user_input == ERR) {
-                    continue;
-                } else if (user_input == 'x') {
-                    break;
-                }
-            }
+            getch();
+            break;
         }
         user_input = getch();
         if (user_input == ERR) {

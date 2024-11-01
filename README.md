@@ -13,7 +13,7 @@ This project is a collection of games that I have created. The games are written
 
 # Installation and Compilation
 
-**Current only support on linux**
+**Currently only supported on Linux**
 
 To compile the games, you need to have a C++ compiler installed on your machine. You can use any C++ compiler of your choice. I have used g++ compiler to compile the games.
 
@@ -49,6 +49,70 @@ git checkout <branch-name>
 ```
 
 Once you have switched to the branch, you can compile the program as mentioned above.
+
+Alternatively, you can use CMake to build the project. Follow these steps:
+
+1. Create a build directory:
+```bash
+mkdir build
+cd build
+```
+
+2. Run CMake to configure the project and generate the build files:
+```bash
+cmake ..
+```
+
+3. Build the project using the generated build files:
+```bash
+cmake --build .
+```
+
+4. Run the compiled executable:
+```bash
+./<executable-name>
+```
+
+To build the project using CMake with precompiled headers, shared libraries, and dependency files, follow these steps:
+
+1. Create a build directory:
+```bash
+mkdir build
+cd build
+```
+
+2. Run CMake to configure the project and generate the build files with precompiled headers, shared libraries, and dependency files:
+```bash
+cmake -DUSE_PCH=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_DEPENDS_USE_COMPILER=ON ..
+```
+
+3. Build the project using the generated build files:
+```bash
+cmake --build .
+```
+
+4. Run the compiled executable:
+```bash
+./<executable-name>
+```
+
+To run the executable using the custom target, follow these steps:
+
+1. Create a build directory:
+```bash
+mkdir build
+cd build
+```
+
+2. Run CMake to configure the project and generate the build files:
+```bash
+cmake ..
+```
+
+3. Build the project using the generated build files:
+```bash
+cmake --build . --target run
+```
 
 # List of Features
 

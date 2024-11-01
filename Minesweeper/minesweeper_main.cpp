@@ -16,7 +16,7 @@ void minesweeper_main() {
     std::vector<std::vector<int>> difficulties = {
         {10, 10, 20},
         {16, 16, 40},
-        {16, 30, 99}
+        {16, 30, 80}
     };
     int difficulty = 0;
 
@@ -71,7 +71,7 @@ void minesweeper_main() {
 
         if (game.check_win()) {
             clear();
-            printw("Congratulations! You won the game.\n");
+            printw("Congratulations! You won the game.\nPress any key to exit.");
             refresh();
             getch();
             break;
