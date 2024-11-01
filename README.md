@@ -70,7 +70,7 @@ cmake --build .
 
 4. Run the compiled executable:
 ```bash
-./<executable-name>
+./games-of-the-games
 ```
 
 To build the project using CMake with precompiled headers, shared libraries, and dependency files, follow these steps:
@@ -91,25 +91,7 @@ cmake -DUSE_PCH=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_DEPENDS_USE_COMPILER=ON ..
 cmake --build .
 ```
 
-4. Run the compiled executable:
-```bash
-./<executable-name>
-```
-
-To run the executable using the custom target, follow these steps:
-
-1. Create a build directory:
-```bash
-mkdir build
-cd build
-```
-
-2. Run CMake to configure the project and generate the build files:
-```bash
-cmake ..
-```
-
-3. Build the project using the generated build files:
+4. Build the project using the generated build files:
 ```bash
 cmake --build . --target run
 ```
