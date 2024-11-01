@@ -8,6 +8,7 @@ public:
     int player_y_maze = 0;
 
     void reset();
+    ~Player() {}
 };
 
 #endif

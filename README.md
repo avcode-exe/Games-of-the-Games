@@ -6,8 +6,8 @@ This project is a collection of games that I have created. The games are written
 
 | Game Name | Status |
 | :---: | :---: |
-| Maze Game | Underdevelopment |
-| Minesweeper | Planned |
+| Maze Game | Completed |
+| Minesweeper | Underdevelopment |
 | Hangman | Planned |
 | 2048 | Planned |
 

@@ -19,6 +19,7 @@ public:
     std::vector<int> _END; // Ending point of the maze
 
     Maze(int size); // Constructor
+    ~Maze() {} // Destructor
     void generate_maze(int x, int y); // Generates the maze using recursive randomized Prim's Algorithm
     void display_maze(int screen_size_y, int line_pointer); // Displays the maze to the console
 };

@@ -15,8 +15,15 @@ void maze_main() {
     char user_input;
     int line_pointer = 0;
     int size = 0;
-    std::cout << "Enter the size of the maze: ";
-    std::cin >> size;
+    while (true) {
+        std::cout << "Enter the size of the maze: ";
+        std::cin >> size;
+        if (size < 3) {
+            std::cout << "Size must be at least 3." << std::endl;
+        } else {
+            break;
+        }
+    }
 
     Maze maze(size);
     maze.generate_maze(maze.start_x, maze.start_y);
