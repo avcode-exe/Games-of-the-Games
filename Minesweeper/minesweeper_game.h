@@ -17,7 +17,9 @@ public:
     void reveal_tile(int row, int col);
     void flag_tile(int row, int col);
     bool check_win();
+    void initialize_colors();
     void display_board(int cursor_row, int cursor_col);
+    void display_full_board();
 };
 
 #endif

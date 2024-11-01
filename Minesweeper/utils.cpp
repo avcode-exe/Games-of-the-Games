@@ -86,7 +86,7 @@ bool Minesweeper::check_win() {
     return true;
 }
 
-void Minesweeper::display_board(int cursor_row, int cursor_col) {
+void Minesweeper::initialize_colors() {
     start_color();
     init_pair(1, COLOR_WHITE, COLOR_BLACK);
     init_pair(2, COLOR_RED, COLOR_BLACK);
@@ -103,6 +103,10 @@ void Minesweeper::display_board(int cursor_row, int cursor_col) {
     init_pair(13, COLOR_BLACK, COLOR_MAGENTA);
     init_pair(14, COLOR_BLACK, COLOR_CYAN);
     init_pair(15, COLOR_BLACK, COLOR_WHITE);
+}
+
+void Minesweeper::display_board(int cursor_row, int cursor_col) {
+    initialize_colors();
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
             if (r == cursor_row && c == cursor_col) {
@@ -124,6 +128,29 @@ void Minesweeper::display_board(int cursor_row, int cursor_col) {
             } else if (board[r][c] == 0) {
                 attron(COLOR_PAIR(1));
                 printw("  ");
+                attroff(COLOR_PAIR(1));
+            } else {
+                attron(COLOR_PAIR(board[r][c] + 2));
+                printw("%d ", board[r][c]);
+                attroff(COLOR_PAIR(board[r][c] + 2));
+            }
+        }
+        printw("\n");
+    }
+    refresh();
+}
+
+void Minesweeper::display_full_board() {
+    initialize_colors();
+    for (int r = 0; r < rows; r++) {
+        for (int c = 0; c < cols; c++) {
+            if (board[r][c] == -1) {
+                attron(COLOR_PAIR(2));
+                printw("X ");
+                attroff(COLOR_PAIR(2));
+            } else if (board[r][c] == 0) {
+                attron(COLOR_PAIR(1));
+                printw("· ");
                 attroff(COLOR_PAIR(1));
             } else {
                 attron(COLOR_PAIR(board[r][c] + 2));

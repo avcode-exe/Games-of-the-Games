@@ -58,7 +58,8 @@ void minesweeper_main() {
             game.reveal_tile(player.player_y_minesweeper, player.player_x_minesweeper);
             if (game.board[player.player_y_minesweeper][player.player_x_minesweeper] == -1) {
                 clear();
-                printw("Game Over! You hit a mine.\nPress any key to exit.");
+                printw("Game Over! You hit a mine.\nPress any key to exit.\nMine locations:\n");
+                game.display_full_board();
                 refresh();
                 getch();
                 break;
