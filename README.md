@@ -7,7 +7,7 @@ This project is a collection of games that I have created. The games are written
 | Game Name | Status |
 | :---: | :---: |
 | Maze Game | Completed |
-| Minesweeper | Under-development |
+| Minesweeper | Completed |
 | Hangman | Planned |
 | 2048 | Planned |
 
@@ -16,6 +16,8 @@ This project is a collection of games that I have created. The games are written
 **Currently only supported on Linux**
 
 To compile the games, you need to have a C++ compiler installed on your machine. You can use any C++ compiler of your choice. I have used g++ compiler to compile the games.
+
+## Method 1: Using Makefile
 
 Next, make sure that your machine has `make`, if you don't have `make` installed, you can install it by running the following command in your terminal:
 
@@ -49,6 +51,8 @@ git checkout <branch-name>
 ```
 
 Once you have switched to the branch, you can compile the program as mentioned above.
+
+## Method 2: Using CMake
 
 Alternatively, you can use CMake to build the project. Follow these steps:
 
@@ -113,6 +117,14 @@ cmake --build . --target run
 * The game has a maze that the player needs to solve.
 * The player can move the character using the WSAD keys.
 * The maze was generated randomly using the Depth-First Search algorithm.
+
+## Minesweeper
+
+* The game has a grid of cells that contain mines.
+* The player needs to clear the grid without detonating any mines.
+* The player can flag the cells that contain mines.
+* The player can reveal the cells that do not contain mines.
+* The game has three difficulty levels: Easy, Medium, and Hard.
 
 # Credit
 
