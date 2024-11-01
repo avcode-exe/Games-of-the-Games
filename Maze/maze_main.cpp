@@ -9,6 +9,7 @@ void maze_main() {
     extern Player player;
     player.player_x_maze = 0;
     player.player_y_maze = 1;
+    player.player_maze_win = false;
 
     int screen_size_x;
     int screen_size_y;
@@ -70,6 +71,7 @@ void maze_main() {
         refresh();
         if (player.player_x_maze == maze._END[0] + 1 && player.player_y_maze == maze._END[1] - 1) {
             clear();
+            player.player_maze_win = true;
             printw("Congratulations! You have reached the end of the maze.");
             refresh();
             while (true) {

@@ -34,6 +34,8 @@ void Minesweeper::generate_board() {
         }
     }
 
+    board[0][0] = 0;
+
     for (int r = 0; r < rows; r++) {
         for (int c = 0; c < cols; c++) {
             if (board[r][c] == -1) continue;

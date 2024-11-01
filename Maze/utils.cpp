@@ -71,11 +71,11 @@ void Maze::display_maze(int screen_size_y, int line_pointer) {
         std::string display_row_str;
         for (int j = 0; j < maze_size; ++j) {
             if (i == player.player_y_maze && j == player.player_x_maze) {
-                display_row_str += "P ";
+                display_row_str += "PP"; // P 
             } else if (maze_map[i][j] == _WALL) {
-                display_row_str += "▓▓"; // Use UTF-8 characters
-            } else if (i == _END[1] && j == _END[0]) {
-                display_row_str += "G ";
+                display_row_str += "##"; // Use UTF-8 characters ▓▓
+            } else if (i == _END[1]-1 && j == _END[0]) {
+                display_row_str += " G"; // G 
             } else {
                 display_row_str += "  ";
             }

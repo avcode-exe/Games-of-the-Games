@@ -7,7 +7,7 @@ This project is a collection of games that I have created. The games are written
 | Game Name | Status |
 | :---: | :---: |
 | Maze Game | Completed |
-| Minesweeper | Underdevelopment |
+| Minesweeper | Under-development |
 | Hangman | Planned |
 | 2048 | Planned |
 
@@ -59,6 +59,10 @@ Once you have switched to the branch, you can compile the program as mentioned a
 * The game has a maze that the player needs to solve.
 * The player can move the character using the WSAD keys.
 * The maze was generated randomly using the Depth-First Search algorithm.
+
+# Credit
+
+Some of the games in this project (maze and minewseeper) are based on the origin project (https://github.com/avcode-exe/ENGG1340-Group-19-Project). Thanks for the contributors of that project!
 
 # License
 

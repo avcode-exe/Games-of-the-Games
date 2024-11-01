@@ -1,8 +1,18 @@
 #include "minesweeper_game.h"
+#include "player.h"
 #include <iostream>
 #include <ncurses.h>
+#include <locale.h>
 
 void minesweeper_main() {
+    setlocale(LC_ALL, "");
+    char user_input;
+    extern Player player;
+    player.game_state = 2;
+    player.player_minesweeper_win = false;
+    player.player_x_minesweeper = 0;
+    player.player_y_minesweeper = 0;
+
     std::vector<std::vector<int>> difficulties = {
         {10, 10, 20},
         {16, 16, 40},
@@ -14,11 +24,12 @@ void minesweeper_main() {
     std::cout << "1. Easy\n";
     std::cout << "2. Medium\n";
     std::cout << "3. Hard\n";
-    std::cin >> difficulty;
+    while (difficulty < 1 || difficulty > 3) {
+        std::cout << "Enter your choice: ";
+        std::cin >> difficulty;
+    }
     Minesweeper game(difficulties[difficulty - 1][0], difficulties[difficulty - 1][1], difficulties[difficulty - 1][2]);
     game.generate_board();
-    char user_input;
-    int row = 0, col = 0;
 
     initscr();
     cbreak();
@@ -27,7 +38,7 @@ void minesweeper_main() {
 
     while (true) {
         clear();
-        game.display_board(row, col);
+        game.display_board(player.player_y_minesweeper, player.player_x_minesweeper);
         refresh();
         user_input = getch();
         if (user_input == ERR) {
@@ -37,24 +48,24 @@ void minesweeper_main() {
         if (user_input == 'x') {
             break;
         } else if (user_input == 'f') {
-            game.flag_tile(row, col);
+            game.flag_tile(player.player_y_minesweeper, player.player_x_minesweeper);
         } else if (user_input == 'r') {
-            game.reveal_tile(row, col);
-            if (game.board[row][col] == -1) {
+            game.reveal_tile(player.player_y_minesweeper, player.player_x_minesweeper);
+            if (game.board[player.player_y_minesweeper][player.player_x_minesweeper] == -1) {
                 clear();
-                printw("Game Over! You hit a mine.\nPress 'x' to exit.");
+                printw("Game Over! You hit a mine.\nPress any key to exit.");
                 refresh();
                 getch();
                 break;
             }
         } else if (user_input == 'w') {
-            row = (row > 0) ? row - 1 : row;
+            player.player_y_minesweeper = (player.player_y_minesweeper > 0) ? player.player_y_minesweeper - 1 : player.player_y_minesweeper;
         } else if (user_input == 's') {
-            row = (row < game.rows - 1) ? row + 1 : row;
+            player.player_y_minesweeper = (player.player_y_minesweeper < game.rows - 1) ? player.player_y_minesweeper + 1 : player.player_y_minesweeper;
         } else if (user_input == 'a') {
-            col = (col > 0) ? col - 1 : col;
+            player.player_x_minesweeper = (player.player_x_minesweeper > 0) ? player.player_x_minesweeper - 1 : player.player_x_minesweeper;
         } else if (user_input == 'd') {
-            col = (col < game.cols - 1) ? col + 1 : col;
+            player.player_x_minesweeper = (player.player_x_minesweeper < game.cols - 1) ? player.player_x_minesweeper + 1 : player.player_x_minesweeper;
         }
         refresh();
 
