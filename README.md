@@ -72,6 +72,10 @@ cmake --build .
 ```bash
 ./games-of-the-games
 ```
+or
+```bash
+cmake --build . --target run
+```
 
 To build the project using CMake with precompiled headers, shared libraries, and dependency files, follow these steps:
 
@@ -92,6 +96,10 @@ cmake --build .
 ```
 
 4. Build the project using the generated build files:
+```bash
+./games-of-the-games
+```
+or
 ```bash
 cmake --build . --target run
 ```

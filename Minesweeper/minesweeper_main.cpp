@@ -20,13 +20,18 @@ void minesweeper_main() {
     };
     int difficulty = 0;
 
-    std::cout << "Select difficulty: \n";
-    std::cout << "1. Easy\n";
-    std::cout << "2. Medium\n";
-    std::cout << "3. Hard\n";
-    while (difficulty < 1 || difficulty > 3) {
+    std::cout << "Select difficulty:" << std::endl;
+    std::cout << "1. Easy" << std::endl;
+    std::cout << "2. Medium" << std::endl;
+    std::cout << "3. Hard" << std::endl;
+    while (true) {
         std::cout << "Enter your choice: ";
         std::cin >> difficulty;
+        if (difficulty < 1 || difficulty > 3) {
+            std::cout << "Invalid choice. Please try again." << std::endl;
+        } else {
+            break;
+        }
     }
     Minesweeper game(difficulties[difficulty - 1][0], difficulties[difficulty - 1][1], difficulties[difficulty - 1][2]);
     game.generate_board();
