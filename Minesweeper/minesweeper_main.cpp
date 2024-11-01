@@ -3,6 +3,7 @@
 #include <iostream>
 #include <ncurses.h>
 #include <locale.h>
+#include <limits>
 
 void minesweeper_main() {
     setlocale(LC_ALL, "");
@@ -24,11 +25,13 @@ void minesweeper_main() {
     std::cout << "1. Easy" << std::endl;
     std::cout << "2. Medium" << std::endl;
     std::cout << "3. Hard" << std::endl;
+    std::cout << "Choose a difficulty: ";
     while (true) {
-        std::cout << "Enter your choice: ";
         std::cin >> difficulty;
-        if (difficulty < 1 || difficulty > 3) {
-            std::cout << "Invalid choice. Please try again." << std::endl;
+        if (std::cin.fail() || difficulty < 1 || difficulty > 3) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid choice. Please enter a number between 1 and 3: ";
         } else {
             break;
         }
@@ -50,7 +53,7 @@ void minesweeper_main() {
             continue;
         }
 
-        if (user_input == 'x') {
+        if (user_input == 'q') {
             break;
         } else if (user_input == 'f') {
             game.flag_tile(player.player_y_minesweeper, player.player_x_minesweeper);

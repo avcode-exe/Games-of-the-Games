@@ -1,6 +1,7 @@
 #include "2048_game.h"
 #include <ncurses.h>
 #include <iostream>
+#include <limits>
 
 int TwoZeroFourEight_main() {
     int difficulty = 0;
@@ -12,11 +13,12 @@ int TwoZeroFourEight_main() {
     std::cout << "Choose a level of difficulty: ";
     while (true) {
         std::cin >> difficulty;
-        if (difficulty >= 1 && difficulty <= 3) {
-            break;
+        if (std::cin.fail() || difficulty < 1 || difficulty > 3) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid choice. Please enter a number between 1 and 3: ";
         } else {
-            std::cout << "Invalid choice. Please try again." << std::endl;
-            std::cout << "Choose a level of difficulty: ";
+            break;
         }
     }
     int user_board_size = difficulties[difficulty - 1];

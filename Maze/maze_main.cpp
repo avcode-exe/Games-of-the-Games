@@ -3,6 +3,7 @@
 #include <thread>
 #include <ncurses.h>
 #include <locale.h>
+#include <limits>
 
 void maze_main() {
     setlocale(LC_ALL, "");
@@ -16,15 +17,24 @@ void maze_main() {
     char user_input;
     int line_pointer = 0;
     int size = 0;
+    int difficulty = 0;
+    std::vector<int> difficulties = {11, 21, 31};
+    std::cout << "Level of difficulty:" << std::endl;
+    std::cout << "1. Easy (11x11)" << std::endl;
+    std::cout << "2. Medium (21x21)" << std::endl;
+    std::cout << "3. Hard (31x31)" << std::endl;
+    std::cout << "Choose a level of difficulty: ";
     while (true) {
-        std::cout << "Enter the size of the maze: ";
-        std::cin >> size;
-        if (size < 3) {
-            std::cout << "Size must be at least 3." << std::endl;
+        std::cin >> difficulty;
+        if (std::cin.fail() || difficulty < 1 || difficulty > 3) {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            std::cout << "Invalid choice. Please enter a number between 1 and 3: ";
         } else {
             break;
         }
     }
+    size = difficulties[difficulty - 1];
 
     Maze maze(size);
     maze.generate_maze(maze.start_x, maze.start_y);
@@ -33,7 +43,7 @@ void maze_main() {
     cbreak();
     noecho();
 
-    while (user_input != 'x') {
+    while (user_input != 'q') {
         move(0, 0);
         getmaxyx(stdscr, screen_size_y, screen_size_x);
         if (screen_size_x < 120) {

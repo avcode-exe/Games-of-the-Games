@@ -15,6 +15,7 @@ include_directories(${PROJECT_SOURCE_DIR}/Minesweeper)
 include_directories(${PROJECT_SOURCE_DIR}/2048)
 
 # Precompiled headers
+option(USE_PCH "Use precompiled headers" ON)
 if(USE_PCH)
     set(PCH_HEADER "game_header.h")
     set(PCH_SOURCE "${CMAKE_BINARY_DIR}/pch.cpp")
@@ -36,13 +37,14 @@ file(GLOB_RECURSE SOURCES
 list(FILTER SOURCES EXCLUDE REGEX ".*CMakeCXXCompilerId.cpp")
 
 # Shared libraries
+option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 add_library(maze SHARED ${PROJECT_SOURCE_DIR}/Maze/utils.cpp)
 add_library(player SHARED ${PROJECT_SOURCE_DIR}/Player/player.cpp)
 add_library(minesweeper SHARED ${PROJECT_SOURCE_DIR}/Minesweeper/utils.cpp ${PROJECT_SOURCE_DIR}/Minesweeper/minesweeper_main.cpp)
 add_library(game2048 SHARED ${PROJECT_SOURCE_DIR}/2048/2048_main.cpp)
 
 # Executable
-add_executable(GamesOfTheGames.out ${SOURCES} ${PROJECT_SOURCE_DIR}/game_functions.cpp)
+add_executable(GamesOfTheGames.out ${SOURCES})
 
 # Link libraries
 target_link_libraries(GamesOfTheGames.out ncursesw pthread maze player minesweeper game2048)

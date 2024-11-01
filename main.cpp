@@ -14,8 +14,8 @@ void display_menu(std::vector<std::string> games) {
 }
 
 int main() {
-    std::vector<std::string> games = {"Maze", "Minesweeper", "2048", "Hangman"};
-    std::vector<int> choices = {1, 2, 3, 4};
+    std::vector<std::string> games = {"Maze", "Minesweeper", "2048"};
+    std::vector<int> choices = {1, 2, 3};
     std::string choice = "";
     Player player;
     player.game_state = 0;
@@ -26,7 +26,7 @@ int main() {
         std::cout << "--------------------------------" << std::endl;
         if (choice == "q" || choice == "Q") {
             break;
-        } else if (choice < "1" || choice > "4") {
+        } else if (choice < "1" || choice > "3") {
             std::cout << "Invalid choice. Please try again." << std::endl;
         } else {
             if (choice == "1") {
@@ -44,11 +44,6 @@ int main() {
                 std::cout << "-------Entering 2048 Game-------\n" << std::endl;
                 TwoZeroFourEight_main();
                 std::cout << "\n-------Exiting 2048 Game-------" << std::endl;
-            } else if (choice == "4") {
-                player.game_state = 4;
-                std::cout << "-------Entering Hangman Game-------\n" << std::endl;
-                hangman_main();
-                std::cout << "\n-------Exiting Hangman Game-------" << std::endl;
             }
         }
     }
