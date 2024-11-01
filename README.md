@@ -17,6 +17,12 @@ This project is a collection of games that I have created. The games are written
 
 To compile the games, you need to have a C++ compiler installed on your machine. You can use any C++ compiler of your choice. I have used g++ compiler to compile the games.
 
+you need to install the most important library for this project, which is `ncurses`. You can install it by running the following command in your terminal:
+
+```bash
+sudo apt install libncurses5-dev libncursesw5-dev
+```
+
 ## Method 1: Using Makefile
 
 Next, make sure that your machine has `make`, if you don't have `make` installed, you can install it by running the following command in your terminal:
@@ -25,13 +31,7 @@ Next, make sure that your machine has `make`, if you don't have `make` installed
 sudo apt install make
 ```
 
-After that, you need to install the most important library for this project, which is `ncurses`. You can install it by running the following command in your terminal:
-
-```bash
-sudo apt install libncurses5-dev libncursesw5-dev
-```
-
-Next, clone the repository by running the following command in your terminal:
+After that, clone the repository by running the following command in your terminal:
 
 ```bash
 git clone https://github.com/avcode-exe/Games-of-the-Games.git
@@ -83,23 +83,17 @@ cmake --build . --target run
 
 To build the project using CMake with precompiled headers, shared libraries, and dependency files, follow these steps:
 
-1. Create a build directory:
-```bash
-mkdir build
-cd build
-```
-
-2. Run CMake to configure the project and generate the build files with precompiled headers, shared libraries, and dependency files:
+1. Run CMake to configure the project and generate the build files with precompiled headers, shared libraries, and dependency files:
 ```bash
 cmake -DUSE_PCH=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_DEPENDS_USE_COMPILER=ON ..
 ```
 
-3. Build the project using the generated build files:
+2. Build the project using the generated build files:
 ```bash
 cmake --build .
 ```
 
-4. Build the project using the generated build files:
+3. Build the project using the generated build files:
 ```bash
 ./games-of-the-games
 ```
