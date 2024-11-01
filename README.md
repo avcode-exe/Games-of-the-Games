@@ -8,8 +8,8 @@ This project is a collection of games that I have created. The games are written
 | :---: | :---: |
 | Maze Game | Completed |
 | Minesweeper | Completed |
-| Hangman | Planned |
-| 2048 | Planned |
+| Hangman | Terminated |
+| 2048 | In Progress |
 
 # Installation and Compilation
 

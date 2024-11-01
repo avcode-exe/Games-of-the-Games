@@ -42,7 +42,7 @@ int main() {
             } else if (choice == "3") {
                 player.game_state = 3;
                 std::cout << "-------Entering 2048 Game-------\n" << std::endl;
-                main_2048();
+                TwoZeroFourEight_main();
                 std::cout << "\n-------Exiting 2048 Game-------" << std::endl;
             } else if (choice == "4") {
                 player.game_state = 4;

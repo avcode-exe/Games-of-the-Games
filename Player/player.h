@@ -13,6 +13,9 @@ public:
     int player_y_minesweeper = 0;
     bool player_minesweeper_win = false;
 
+    int player_score_2048 = 0;
+    bool player_2048_win = false;
+
     void reset();
     ~Player() {}
 };

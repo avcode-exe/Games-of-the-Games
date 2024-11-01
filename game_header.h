@@ -5,7 +5,7 @@
 
 void maze_main();
 void minesweeper_main();
-void main_2048();
+void TwoZeroFourEight_main();
 void hangman_main();
 
 #endif
