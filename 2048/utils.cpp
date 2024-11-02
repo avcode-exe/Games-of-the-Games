@@ -30,7 +30,7 @@ void TwoZeroFourEight::draw_board() {
             int value = board[i][j];
             int color_pair = value == 0 ? 1 : (value > 2048 ? 8 : (value / 2) % 7 + 2);
             attron(COLOR_PAIR(color_pair));
-            mvprintw(i, j * 4, "%4d", value);
+            mvprintw(i, j * 5, "%4d", value);
             attroff(COLOR_PAIR(color_pair));
         }
     }
