@@ -1,6 +1,10 @@
 # Games-of-the-Games
 
-# Project Description
+## Introduction
+
+Welcome to the Games-of-the-Games project! This project is a collection of games written in C++. The games included are Maze, Minesweeper, Hangman, and 2048. The project is designed to be easily extendable, and more games can be added in the future.
+
+## Project Description
 
 This project is a collection of games that I have created. The games are written in C++. I'm planning to add more games
 in the future.

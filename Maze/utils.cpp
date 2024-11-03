@@ -15,12 +15,8 @@ extern Player player;
  *
  * @param size The size of the maze (both width and height).
  */
-Maze::Maze(const int size) {
-	maze_size = size;
-	start_x = 1;
-	start_y = 0;
-	_END = {maze_size - 2, maze_size - 1};
-	maze_map = std::vector<std::vector<int>>(maze_size, std::vector<int>(maze_size, _WALL));
+Maze::Maze(const int size) : maze_size(size), start_x(1), start_y(0), _END{maze_size - 2, maze_size - 1} {
+	maze_map.resize(maze_size, std::vector<int>(maze_size, _WALL));
 }
 
 /**
@@ -64,6 +60,16 @@ void Maze::generate_maze(int x, int y) {
 	maze_map[_END[0]][_END[1] - 1] = _PATH;
 }
 
+/**
+ * @brief Displays the maze on the screen.
+ *
+ * This function renders the maze on the screen starting from a specified line pointer
+ * and up to a specified screen size in the y-direction. It uses the ncurses library
+ * to handle screen output.
+ *
+ * @param screen_size_y The number of lines to display on the screen.
+ * @param line_pointer The starting line in the maze from which to begin displaying.
+ */
 void Maze::display_maze(const int screen_size_y, const int line_pointer) {
 	move(0, 0);
 	for (int i = line_pointer; i < std::min(screen_size_y + line_pointer, maze_size); ++i) {

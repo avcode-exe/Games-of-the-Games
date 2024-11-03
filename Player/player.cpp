@@ -2,6 +2,13 @@
 
 Player player;
 
+/**
+ * @brief Resets the player's state for all games.
+ *
+ * This function resets the player's state variables for different games to their initial values.
+ * It sets the game state to 0, initializes the player's position in the maze and Minesweeper games,
+ * and resets the win status and score for the respective games.
+ */
 void Player::reset() {
 	game_state = 0;
 	player_x_maze = 1;

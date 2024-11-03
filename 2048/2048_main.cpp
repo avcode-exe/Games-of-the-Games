@@ -3,6 +3,17 @@
 #include <ncurses.h>
 #include "2048_game.h"
 
+/**
+ * @brief Main function for the 2048 game.
+ *
+ * This function initializes the game, sets up the difficulty level, and handles
+ * the main game loop. The user is prompted to select a difficulty level, which
+ * determines the size of the game board. The game is played using the keyboard
+ * to move tiles in four directions: left, right, up, and down. The game continues
+ * until the player can no longer make any moves or chooses to quit.
+ *
+ * @return int Returns 0 upon successful completion of the game.
+ */
 int TwoZeroFourEight_main() {
 	int difficulty = 0;
 	const std::vector<int> difficulties = {8, 6, 4};

@@ -5,6 +5,26 @@
 #include "minesweeper_game.h"
 #include "player.h"
 
+/**
+ * @brief Main function for the Minesweeper game.
+ *
+ * This function initializes the game state, prompts the user to select a difficulty level,
+ * and starts the Minesweeper game loop. The game loop handles user input for moving the
+ * cursor, flagging tiles, and revealing tiles. The game ends when the player either hits
+ * a mine or successfully reveals all non-mine tiles.
+ *
+ * User controls:
+ * - 'w': Move cursor up
+ * - 's': Move cursor down
+ * - 'a': Move cursor left
+ * - 'd': Move cursor right
+ * - 'f': Flag a tile
+ * - 'r': Reveal a tile
+ * - 'q': Quit the game
+ *
+ * The game displays a "Game Over" message if the player hits a mine, and a "Congratulations"
+ * message if the player successfully reveals all non-mine tiles.
+ */
 void minesweeper_main() {
 	setlocale(LC_ALL, "");
 	extern Player player;

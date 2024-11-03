@@ -5,6 +5,31 @@
 #include <thread>
 #include "maze_game.h"
 
+/**
+ * @brief Main function to run the maze game.
+ *
+ * This function initializes the player position, sets up the game environment,
+ * and handles user input to navigate through the maze. The player can choose
+ * the level of difficulty, which determines the size of the maze. The game
+ * continues until the player reaches the end of the maze or quits by pressing 'q'.
+ *
+ * The function uses ncurses for handling screen output and user input.
+ *
+ * @note The screen width must be at least 120 characters for the game to run properly.
+ *
+ * @details
+ * - Initializes player position and game state.
+ * - Prompts the user to select a difficulty level.
+ * - Generates the maze based on the selected difficulty.
+ * - Enters a loop to handle user input for navigating the maze:
+ *   - 'w' to move up
+ *   - 's' to move down
+ *   - 'a' to move left
+ *   - 'd' to move right
+ *   - 'q' to quit the game
+ * - Updates the maze display and checks if the player has reached the end.
+ * - Ends the ncurses session and resets the game state.
+ */
 void maze_main() {
 	setlocale(LC_ALL, "");
 	extern Player player;
