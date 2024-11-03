@@ -5,7 +5,7 @@
 
 extern Player player;
 
-TwoZeroFourEight::TwoZeroFourEight(int size) {
+TwoZeroFourEight::TwoZeroFourEight(const int size) {
     map_size = size;
     player.player_score_2048 = 0;
     board = std::vector<std::vector<int>>(map_size, std::vector<int>(map_size, 0));
@@ -130,7 +130,7 @@ bool TwoZeroFourEight::move_down() {
     return moved;
 }
 
-bool TwoZeroFourEight::can_move() {
+bool TwoZeroFourEight::can_move() const {
     for (int i = 0; i < map_size; ++i) {
         for (int j = 0; j < map_size; ++j) {
             if (board[i][j] == 0) return true;

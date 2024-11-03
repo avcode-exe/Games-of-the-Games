@@ -2,7 +2,7 @@
 #include <iostream>
 #include <thread>
 #include <ncurses.h>
-#include <locale.h>
+#include <clocale>
 #include <limits>
 
 void maze_main() {
@@ -12,8 +12,6 @@ void maze_main() {
     player.player_y_maze = 1;
     player.player_maze_win = false;
 
-    int screen_size_x;
-    int screen_size_y;
     char user_input;
     int line_pointer = 0;
     int size = 0;
@@ -44,6 +42,8 @@ void maze_main() {
     noecho();
 
     while (user_input != 'q') {
+        int screen_size_y;
+        int screen_size_x;
         move(0, 0);
         getmaxyx(stdscr, screen_size_y, screen_size_x);
         if (screen_size_x < 120) {
@@ -94,5 +94,4 @@ void maze_main() {
     }
     endwin();
     player.game_state = 0;
-    return;
 }
