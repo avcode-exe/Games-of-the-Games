@@ -8,8 +8,8 @@ This project is a collection of games that I have created. The games are written
 | :---: | :---: |
 | Maze Game | Completed |
 | Minesweeper | Completed |
-| Hangman | Planned |
-| 2048 | Planned |
+| Hangman | Terminated |
+| 2048 | In Progress |
 
 # Installation and Compilation
 
@@ -17,7 +17,7 @@ This project is a collection of games that I have created. The games are written
 
 To compile the games, you need to have a C++ compiler installed on your machine. You can use any C++ compiler of your choice. I have used g++ compiler to compile the games.
 
-you need to install the most important library for this project, which is `ncurses`. You can install it by running the following command in your terminal:
+You need to install the most important library for this project, which is `ncurses`. You can install it by running the following command in your terminal:
 
 ```bash
 sudo apt install libncurses5-dev libncursesw5-dev
@@ -54,7 +54,9 @@ Once you have switched to the branch, you can compile the program as mentioned a
 
 ## Method 2: Using CMake
 
-Alternatively, you can use CMake to build the project. Follow these steps:
+Alternatively, you can use CMake to build the project. The project using CMake with precompiled headers, shared libraries, and dependency files.
+
+Follow these steps:
 
 1. Create a build directory:
 ```bash
@@ -81,11 +83,10 @@ or
 cmake --build . --target run
 ```
 
-To build the project using CMake with precompiled headers, shared libraries, and dependency files, follow these steps:
-
-1. Run CMake to configure the project and generate the build files with precompiled headers, shared libraries, and dependency files:
+**Note**: If you want to build the project without precompiled headers, shared libraries, and dependency files, you can follow these steps:
+1. Run CMake to configure the project and generate the build files without precompiled headers, shared libraries, and dependency files:
 ```bash
-cmake -DUSE_PCH=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_DEPENDS_USE_COMPILER=ON ..
+cmake -DUSE_PCH=OFF -DBUILD_SHARED_LIBS=OFF -DCMAKE_DEPENDS_USE_COMPILER=OFF ..
 ```
 
 2. Build the project using the generated build files:
@@ -93,7 +94,7 @@ cmake -DUSE_PCH=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_DEPENDS_USE_COMPILER=ON ..
 cmake --build .
 ```
 
-3. Build the project using the generated build files:
+3. Run the compiled executable:
 ```bash
 ./games-of-the-games
 ```
