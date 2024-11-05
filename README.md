@@ -15,6 +15,7 @@ in the future.
 | Minesweeper | Completed  |
 |   Hangman   | Terminated |
 |    2048     | Completed  |
+| Tic-Tac-Toe | Planned    |
 
 # Installation and Compilation
 
