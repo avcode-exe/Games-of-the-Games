@@ -22,10 +22,7 @@
  * - Prompts the user to select a difficulty level.
  * - Generates the maze based on the selected difficulty.
  * - Enters a loop to handle user input for navigating the maze:
- *   - 'w' to move up
- *   - 's' to move down
- *   - 'a' to move left
- *   - 'd' to move right
+ *   - Arrow keys to move
  *   - 'q' to quit the game
  * - Updates the maze display and checks if the player has reached the end.
  * - Ends the ncurses session and resets the game state.
@@ -37,91 +34,116 @@ void maze_main() {
 	player.player_y_maze = 1;
 	player.player_maze_win = false;
 
-	char user_input;
-	int line_pointer = 0;
 	int size = 0;
 	int difficulty = 0;
 	std::vector<int> difficulties = {11, 21, 31};
-	std::cout << "Level of difficulty:" << std::endl;
-	std::cout << "1. Easy (11x11)" << std::endl;
-	std::cout << "2. Medium (21x21)" << std::endl;
-	std::cout << "3. Hard (31x31)" << std::endl;
-	std::cout << "Choose a level of difficulty: ";
-	while (true) {
-		std::cin >> difficulty;
-		if (std::cin.fail() || difficulty < 1 || difficulty > 3) {
-			std::cin.clear();
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			std::cout << "Invalid choice. Please enter a number between 1 and 3: ";
-		}
-		else {
-			break;
-		}
-	}
-	size = difficulties[difficulty - 1];
-
-	Maze maze(size);
-	maze.generate_maze(maze.start_x, maze.start_y);
-
+    std::vector<std::string> difficulty_levels = {"Easy (11x11)", "Medium (21x21)", "Hard (31x31)", "Quit / Exit"};
 	initscr();
 	cbreak();
 	noecho();
+    curs_set(0);
 
-	while (user_input != 'q') {
-		int screen_size_y;
-		int screen_size_x;
-		move(0, 0);
-		getmaxyx(stdscr, screen_size_y, screen_size_x);
-		if (screen_size_x < 120) {
-			clear();
-			printw("Screen width of 120 required\n");
-			printw("Current width: %d\n", screen_size_x);
-			std::this_thread::sleep_for(std::chrono::milliseconds(500));
-			refresh();
-			continue;
-		}
-		if (user_input == 'w') {
-			if (player.player_y_maze - line_pointer < screen_size_y / 2 && line_pointer > 0) {
-				line_pointer--;
-			}
-			if (player.player_y_maze > 0 && maze.maze_map[player.player_y_maze - 1][player.player_x_maze] != 1) {
-				player.player_y_maze--;
-			}
-		}
-		else if (user_input == 's') {
-			if (player.player_y_maze > screen_size_y / 2 + line_pointer &&
-				line_pointer + screen_size_y < maze.maze_map.size()) {
-				line_pointer++;
-			}
-			if (maze.maze_map[player.player_y_maze + 1][player.player_x_maze] != 1) {
-				player.player_y_maze++;
+	int max_y, max_x;
+    getmaxyx(stdscr, max_y, max_x);
+
+    // Intro page
+	clear();
+    mvprintw(max_y / 2 - 2, max_x / 2 - 10, "Welcome to Maze Game!");
+    mvprintw(max_y / 2, max_x / 2 - 12, "Press any key to continue...");
+	refresh();
+	getch();
+
+    // Selection page
+    int choice = 0;
+    while (true) {
+        clear();
+        mvprintw(max_y / 2 - 2, max_x / 2 - 15, "Select a difficulty level:");
+        for (int i = 0; i < difficulty_levels.size(); i++) {
+            if (i == choice) {
+                mvprintw(max_y / 2 + i, max_x / 2 - 15, "> %s", difficulty_levels[i].c_str());
+            } else {
+                mvprintw(max_y / 2 + i, max_x / 2 - 13, "  %s", difficulty_levels[i].c_str());
 			}
 		}
-		else if (user_input == 'a') {
-			if (maze.maze_map[player.player_y_maze][player.player_x_maze - 1] != 1) {
-				player.player_x_maze--;
-			}
-		}
-		else if (user_input == 'd') {
-			if (maze.maze_map[player.player_y_maze][player.player_x_maze + 1] != 1) {
-				player.player_x_maze++;
-			}
-		}
-		maze.display_maze(screen_size_y, line_pointer);
-		refresh();
-		if (player.player_x_maze == maze._END[0] + 1 && player.player_y_maze == maze._END[1] - 1) {
-			clear();
-			player.player_maze_win = true;
-			printw("Congratulations! You have reached the end of the maze.\nPress any key to exit.");
-			refresh();
-			getch();
-			break;
-		}
-		user_input = getch();
-		if (user_input == ERR) {
-			continue;
-		}
+        refresh();
+
+        int input = getch();
+        if (input == KEY_UP && choice > 0) {
+            choice--;
+        } else if (input == KEY_DOWN && choice < difficulty_levels.size() - 1) {
+            choice++;
+        } else if (input == '\n') {
+            if (choice == difficulty_levels.size() - 1) {
+                endwin();
+                return;
+            }
+            difficulty = choice + 1;
+            size = difficulties[difficulty - 1];
+            break;
 	}
-	endwin();
-	player.game_state = 0;
+}
+
+    Maze maze(size);
+    maze.generate_maze(maze.start_x, maze.start_y);
+
+    // Game loop
+    int user_input;
+    int line_pointer = 0;
+    while (user_input != 'q') {
+        int screen_size_y;
+        int screen_size_x;
+        move(0, 0);
+        getmaxyx(stdscr, screen_size_y, screen_size_x);
+        if (screen_size_x < 120) {
+            clear();
+            printw("Screen width of 120 required\n");
+            printw("Current width: %d\n", screen_size_x);
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            refresh();
+            continue;
+        }
+        if (user_input == KEY_UP) {
+            if (player.player_y_maze - line_pointer < screen_size_y / 2 && line_pointer > 0) {
+                line_pointer--;
+            }
+            if (player.player_y_maze > 0 && maze.maze_map[player.player_y_maze - 1][player.player_x_maze] != 1) {
+                player.player_y_maze--;
+            }
+        }
+        else if (user_input == KEY_DOWN) {
+            if (player.player_y_maze > screen_size_y / 2 + line_pointer &&
+                line_pointer + screen_size_y < maze.maze_map.size()) {
+                line_pointer++;
+            }
+            if (maze.maze_map[player.player_y_maze + 1][player.player_x_maze] != 1) {
+                player.player_y_maze++;
+            }
+        }
+        else if (user_input == KEY_LEFT) {
+            if (maze.maze_map[player.player_y_maze][player.player_x_maze - 1] != 1) {
+                player.player_x_maze--;
+            }
+        }
+        else if (user_input == KEY_RIGHT) {
+            if (maze.maze_map[player.player_y_maze][player.player_x_maze + 1] != 1) {
+                player.player_x_maze++;
+            }
+        }
+        maze.display_maze(screen_size_y, line_pointer);
+        refresh();
+        if (player.player_x_maze == maze._END[0] + 1 && player.player_y_maze == maze._END[1] - 1) {
+            clear();
+            player.player_maze_win = true;
+            printw("Congratulations! You have reached the end of the maze.\nPress any key to exit.");
+            refresh();
+            getch();
+            break;
+        }
+        user_input = getch();
+        if (user_input == ERR) {
+            continue;
+        }
+    }
+    endwin();
+    player.game_state = 0;
 }
