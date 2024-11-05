@@ -61,7 +61,7 @@ int display_menu_ncurses(const std::vector<std::string>& games) {
 }
 
 int main() {
-    const std::vector<std::string> games = {"Maze", "Minesweeper", "2048"};
+    const std::vector<std::string> games = {"Maze", "Minesweeper", "2048", "Tic-Tac-Toe"};
     Player player;
     player.game_state = 0;
 
@@ -89,6 +89,9 @@ int main() {
             } else if (choice == 2) {
                 player.game_state = 3;
                 TwoZeroFourEight_main();
+            } else if (choice == 3) {
+                player.game_state = 4;
+                tic_tac_toe_main();
             }
         }
         refresh();

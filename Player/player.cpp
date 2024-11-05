@@ -1,6 +1,6 @@
 #include "player.h"
 
-Player player;
+Player player; // Define player variable
 
 /**
  * @brief Resets the player's state for all games.
@@ -10,12 +10,15 @@ Player player;
  * and resets the win status and score for the respective games.
  */
 void Player::reset() {
-	game_state = 0;
-	player_x_maze = 1;
-	player_y_maze = 0;
-	player_maze_win = false;
-	player_x_minesweeper = 0;
-	player_y_minesweeper = 0;
-	player_minesweeper_win = false;
-	player_score_2048 = 0;
+    game_state = 0;
+    player_x_maze = 1;
+    player_y_maze = 0;
+    player_maze_win = false;
+    player_x_minesweeper = 0;
+    player_y_minesweeper = 0;
+    player_minesweeper_win = false;
+    player_score_2048 = 0;
+    player_x_tic_tac_toe = 0;
+    player_y_tic_tac_toe = 0;
+    player_tic_tac_toe_win = false;
 }

@@ -22,6 +22,10 @@ public:
 
 	int player_score_2048 = 0;
 
+	int player_x_tic_tac_toe = 0;
+	int player_y_tic_tac_toe = 0;
+	bool player_tic_tac_toe_win = false;
+
 	void reset();
 	~Player() = default;
 };

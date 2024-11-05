@@ -13,6 +13,7 @@ include_directories(${PROJECT_SOURCE_DIR}/Maze)
 include_directories(${PROJECT_SOURCE_DIR}/Player)
 include_directories(${PROJECT_SOURCE_DIR}/Minesweeper)
 include_directories(${PROJECT_SOURCE_DIR}/2048)
+include_directories(${PROJECT_SOURCE_DIR}/Tic-Tac-Toe) # Add Tic-Tac-Toe include directory
 
 # Precompiled headers
 option(USE_PCH "Use precompiled headers" ON)
@@ -31,6 +32,7 @@ file(GLOB_RECURSE SOURCES
     "${PROJECT_SOURCE_DIR}/Player/*.cpp"
     "${PROJECT_SOURCE_DIR}/Minesweeper/*.cpp"
     "${PROJECT_SOURCE_DIR}/2048/*.cpp"
+    "${PROJECT_SOURCE_DIR}/Tic-Tac-Toe/*.cpp" # Add Tic-Tac-Toe source files
 )
 
 # Exclude CMakeCXXCompilerId.cpp
@@ -42,12 +44,13 @@ add_library(maze SHARED ${PROJECT_SOURCE_DIR}/Maze/utils.cpp)
 add_library(player SHARED ${PROJECT_SOURCE_DIR}/Player/player.cpp)
 add_library(minesweeper SHARED ${PROJECT_SOURCE_DIR}/Minesweeper/utils.cpp ${PROJECT_SOURCE_DIR}/Minesweeper/minesweeper_main.cpp)
 add_library(game2048 SHARED ${PROJECT_SOURCE_DIR}/2048/2048_main.cpp)
+add_library(tictactoe SHARED ${PROJECT_SOURCE_DIR}/Tic-Tac-Toe/utils.cpp ${PROJECT_SOURCE_DIR}/Tic-Tac-Toe/tic_tac_toe_main.cpp ${PROJECT_SOURCE_DIR}/Tic-Tac-Toe/minimax.cpp) # Add Tic-Tac-Toe library
 
 # Executable
 add_executable(GamesOfTheGames.out ${SOURCES})
 
 # Link libraries
-target_link_libraries(GamesOfTheGames.out ncursesw pthread maze player minesweeper game2048)
+target_link_libraries(GamesOfTheGames.out ncursesw pthread maze player minesweeper game2048 tictactoe) # Link Tic-Tac-Toe library
 if(USE_PCH)
     target_link_libraries(GamesOfTheGames.out pch)
 endif()

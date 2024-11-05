@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the Games-of-the-Games project! This project is a collection of games written in C++. The games included are Maze, Minesweeper, Hangman, and 2048. The project is designed to be easily extendable, and more games can be added in the future.
+Welcome to the Games-of-the-Games project! This project is a collection of games written in C++. The games included are Maze, Minesweeper, Hangman, 2048, and Tic-Tac-Toe. The project is designed to be easily extendable, and more games can be added in the future.
 
 ## Project Description
 
@@ -15,7 +15,8 @@ in the future.
 | Minesweeper | Completed  |
 |   Hangman   | Terminated |
 |    2048     | Completed  |
-| Tic-Tac-Toe | Planned    |
+| Tic-Tac-Toe | Completed  |
+| Snake Game  |  Planned   |
 
 # Installation and Compilation
 
