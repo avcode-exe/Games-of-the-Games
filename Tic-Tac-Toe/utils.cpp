@@ -1,4 +1,5 @@
 #include <iostream>
+#include <ncurses.h>
 #include "tic_tac_toe_game.h"
 
 void print_board(const char board[3][3]) {
@@ -10,6 +11,26 @@ void print_board(const char board[3][3]) {
         }
         std::cout << "\n-------------\n";
     }
+}
+
+void print_board_ncurses(const char board[3][3], int current_row, int current_col, bool selected) {
+    clear();
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            if (i == current_row && j == current_col) {
+                attron(COLOR_PAIR(1));
+                if (selected && board[i][j] == '_') {
+                    mvprintw(i * 2, j * 4, "[o]");
+                } else {
+                    mvprintw(i * 2, j * 4, "[%c]", board[i][j]);
+                }
+                attroff(COLOR_PAIR(1));
+            } else {
+                mvprintw(i * 2, j * 4, " %c ", board[i][j]);
+            }
+        }
+    }
+    refresh();
 }
 
 bool is_moves_left(const char board[3][3]) {
