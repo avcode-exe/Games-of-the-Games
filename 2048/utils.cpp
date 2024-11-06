@@ -1,9 +1,6 @@
 #include <ncurses.h>
 #include <random>
 #include "2048_game.h"
-#include "player.h"
-
-extern Player player;
 
 /**
  * @brief Constructs a new TwoZeroFourEight object with the specified board size.
@@ -15,7 +12,7 @@ extern Player player;
  */
 TwoZeroFourEight::TwoZeroFourEight(const int size) {
 	map_size = size;
-	player.player_score_2048 = 0;
+	score = 0;
 	board = std::vector<std::vector<int>>(map_size, std::vector<int>(map_size, 0));
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -55,7 +52,7 @@ void TwoZeroFourEight::draw_board() {
 			attroff(COLOR_PAIR(color_pair));
 		}
 	}
-	mvprintw(map_size, 0, "Score: %d", player.player_score_2048);
+	mvprintw(map_size, 0, "Score: %d", score);
 	refresh();
 }
 
@@ -78,7 +75,7 @@ bool TwoZeroFourEight::move_left() {
 			if (board[i][j] != 0) {
 				if (pos > 0 && new_row[pos - 1] == board[i][j]) {
 					new_row[pos - 1] *= 2;
-					player.player_score_2048 += new_row[pos - 1];
+					score += new_row[pos - 1];
 					moved = true;
 				}
 				else {
@@ -111,7 +108,7 @@ bool TwoZeroFourEight::move_right() {
 			if (board[i][j] != 0) {
 				if (pos < map_size - 1 && new_row[pos + 1] == board[i][j]) {
 					new_row[pos + 1] *= 2;
-					player.player_score_2048 += new_row[pos + 1];
+					score += new_row[pos + 1];
 					moved = true;
 				}
 				else {
@@ -144,7 +141,7 @@ bool TwoZeroFourEight::move_up() {
 			if (board[i][j] != 0) {
 				if (pos > 0 && new_col[pos - 1] == board[i][j]) {
 					new_col[pos - 1] *= 2;
-					player.player_score_2048 += new_col[pos - 1];
+					score += new_col[pos - 1];
 					moved = true;
 				}
 				else {
@@ -180,7 +177,7 @@ bool TwoZeroFourEight::move_down() {
 			if (board[i][j] != 0) {
 				if (pos < map_size - 1 && new_col[pos + 1] == board[i][j]) {
 					new_col[pos + 1] *= 2;
-					player.player_score_2048 += new_col[pos + 1];
+					score += new_col[pos + 1];
 					moved = true;
 				}
 				else {

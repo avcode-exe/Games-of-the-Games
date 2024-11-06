@@ -5,8 +5,6 @@
 #include <vector>
 #include "maze_game.h"
 
-extern Player player;
-
 /**
  * @brief Constructs a Maze object with a specified size.
  *
@@ -71,11 +69,14 @@ void Maze::generate_maze(int x, int y) {
  * @param line_pointer The starting line in the maze from which to begin displaying.
  */
 void Maze::display_maze(const int screen_size_y, const int line_pointer) {
+	int max_x;
+	int max_y;
+	getmaxyx(stdscr, max_y, max_x);
 	move(0, 0);
 	for (int i = line_pointer; i < std::min(screen_size_y + line_pointer, maze_size); ++i) {
 		std::string display_row_str;
 		for (int j = 0; j < maze_size; ++j) {
-			if (i == player.player_y_maze && j == player.player_x_maze) {
+			if (i == player_y && j == player_x) {
 				display_row_str += "PP";
 			}
 			else if (maze_map[i][j] == _WALL) {
@@ -89,6 +90,7 @@ void Maze::display_maze(const int screen_size_y, const int line_pointer) {
 			}
 		}
 		printw("%s\n", display_row_str.c_str());
+		// mvprintw(max_y / 2 - 2 + i, max_x / 2 - 15, "%s\n", display_row_str.c_str());
 	}
 	refresh();
 }

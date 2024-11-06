@@ -8,6 +8,9 @@ public:
 	int rows;
 	int cols;
 	int num_mines;
+	int player_x;
+	int player_y;
+	bool win;
 	std::vector<std::vector<int>> board;
 	std::vector<std::vector<bool>> revealed;
 	std::vector<std::vector<bool>> flagged;
