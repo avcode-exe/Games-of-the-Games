@@ -3,7 +3,6 @@
 #include <vector>
 #include <ncurses.h>
 #include "game_header.h"
-#include "player.h"
 
 /**
  * @brief Displays an interactive menu using ncurses.
@@ -61,9 +60,7 @@ int display_menu_ncurses(const std::vector<std::string>& games) {
 }
 
 int main() {
-    const std::vector<std::string> games = {"Maze", "Minesweeper", "2048"};
-    Player player;
-    player.game_state = 0;
+    const std::vector<std::string> games = {"Maze", "Minesweeper", "2048", "Tic-Tac-Toe"};
 
     while (true) {
         int choice = display_menu_ncurses(games);
@@ -81,14 +78,13 @@ int main() {
         } else {
             clear();
             if (choice == 0) {
-                player.game_state = 1;
                 maze_main();
             } else if (choice == 1) {
-                player.game_state = 2;
                 minesweeper_main();
             } else if (choice == 2) {
-                player.game_state = 3;
                 TwoZeroFourEight_main();
+            } else if (choice == 3) {
+                tic_tac_toe_main();
             }
         }
         refresh();

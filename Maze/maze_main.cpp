@@ -29,10 +29,6 @@
  */
 void maze_main() {
 	setlocale(LC_ALL, "");
-	extern Player player;
-	player.player_x_maze = 0;
-	player.player_y_maze = 1;
-	player.player_maze_win = false;
 
 	int size = 0;
 	int difficulty = 0;
@@ -86,12 +82,18 @@ void maze_main() {
     Maze maze(size);
     maze.generate_maze(maze.start_x, maze.start_y);
 
+    maze.player_x = 0;
+    maze.player_y = 1;
+    maze.win = false;
+
     // Game loop
     int user_input;
     int line_pointer = 0;
     while (user_input != 'q') {
         int screen_size_y;
         int screen_size_x;
+        clear();
+        refresh();
         move(0, 0);
         getmaxyx(stdscr, screen_size_y, screen_size_x);
         if (screen_size_x < 120) {
@@ -103,37 +105,37 @@ void maze_main() {
             continue;
         }
         if (user_input == KEY_UP) {
-            if (player.player_y_maze - line_pointer < screen_size_y / 2 && line_pointer > 0) {
+            if (maze.player_y - line_pointer < screen_size_y / 2 && line_pointer > 0) {
                 line_pointer--;
             }
-            if (player.player_y_maze > 0 && maze.maze_map[player.player_y_maze - 1][player.player_x_maze] != 1) {
-                player.player_y_maze--;
+            if (maze.player_y > 0 && maze.maze_map[maze.player_y - 1][maze.player_x] != 1) {
+                maze.player_y--;
             }
         }
         else if (user_input == KEY_DOWN) {
-            if (player.player_y_maze > screen_size_y / 2 + line_pointer &&
+            if (maze.player_y > screen_size_y / 2 + line_pointer &&
                 line_pointer + screen_size_y < maze.maze_map.size()) {
                 line_pointer++;
             }
-            if (maze.maze_map[player.player_y_maze + 1][player.player_x_maze] != 1) {
-                player.player_y_maze++;
+            if (maze.maze_map[maze.player_y + 1][maze.player_x] != 1) {
+                maze.player_y++;
             }
         }
         else if (user_input == KEY_LEFT) {
-            if (maze.maze_map[player.player_y_maze][player.player_x_maze - 1] != 1) {
-                player.player_x_maze--;
+            if (maze.maze_map[maze.player_y][maze.player_x - 1] != 1) {
+                maze.player_x--;
             }
         }
         else if (user_input == KEY_RIGHT) {
-            if (maze.maze_map[player.player_y_maze][player.player_x_maze + 1] != 1) {
-                player.player_x_maze++;
+            if (maze.maze_map[maze.player_y][maze.player_x + 1] != 1) {
+                maze.player_x++;
             }
         }
         maze.display_maze(screen_size_y, line_pointer);
         refresh();
-        if (player.player_x_maze == maze._END[0] + 1 && player.player_y_maze == maze._END[1] - 1) {
+        if (maze.player_x == maze._END[0] + 1 && maze.player_y == maze._END[1] - 1) {
             clear();
-            player.player_maze_win = true;
+            maze.win = true;
             printw("Congratulations! You have reached the end of the maze.\nPress any key to exit.");
             refresh();
             getch();
@@ -145,5 +147,4 @@ void maze_main() {
         }
     }
     endwin();
-    player.game_state = 0;
 }

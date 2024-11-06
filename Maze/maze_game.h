@@ -2,7 +2,6 @@
 #define MAZE_GAME_H
 
 #include <vector>
-#include "player.h"
 
 class Maze {
 private:
@@ -14,6 +13,9 @@ public:
 	int maze_size; // The size of the maze
 	int start_x; // The x-coordinate of the starting point of the maze
 	int start_y; // The y-coordinate of the starting point of the maze
+	int player_x;
+	int player_y;
+	bool win;
 	std::vector<std::vector<int>> maze_map; // The maze grid
 	std::vector<int> _END; // Ending point of the maze
 
