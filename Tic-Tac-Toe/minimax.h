@@ -5,6 +5,11 @@ struct Move {
     int row, col;
 };
 
-Move find_best_move(char board[3][3]);
+class Minimax {
+public:
+    Move find_best_move(char board[3][3]);
+private:
+    int minimax(char board[3][3], int depth, bool is_max);
+};
 
 #endif

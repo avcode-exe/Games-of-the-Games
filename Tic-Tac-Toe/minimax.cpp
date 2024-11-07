@@ -2,21 +2,18 @@
 #include "minimax.h"
 #include "tic_tac_toe_game.h"
 
-int minimax(char board[3][3], int depth, bool is_max) {
-    int score = evaluate(board);
-
+int Minimax::minimax(char board[3][3], int depth, bool is_max) {
+    TicTacToe game;
+    int score = game.evaluate(board);
     if (score == 10)
         return score - depth;
-
     if (score == -10)
         return score + depth;
-
-    if (!is_moves_left(board))
+    if (!game.is_moves_left(board))
         return 0;
 
     if (is_max) {
         int best = -1000;
-
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 if (board[i][j] == '_') {
@@ -29,7 +26,6 @@ int minimax(char board[3][3], int depth, bool is_max) {
         return best;
     } else {
         int best = 1000;
-
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
                 if (board[i][j] == '_') {
@@ -43,7 +39,7 @@ int minimax(char board[3][3], int depth, bool is_max) {
     }
 }
 
-Move find_best_move(char board[3][3]) {
+Move Minimax::find_best_move(char board[3][3]) {
     int best_val = -1000;
     Move best_move = { -1, -1 };
 

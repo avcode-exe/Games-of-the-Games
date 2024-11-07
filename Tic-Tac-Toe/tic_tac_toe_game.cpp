@@ -2,7 +2,7 @@
 #include <ncurses.h>
 #include "tic_tac_toe_game.h"
 
-void print_board(const char board[3][3]) {
+void TicTacToe::print_board(const char board[3][3]) {
     std::cout << "-------------\n";
     for (int i = 0; i < 3; ++i) {
         std::cout << "| ";
@@ -13,7 +13,7 @@ void print_board(const char board[3][3]) {
     }
 }
 
-void print_board_ncurses(const char board[3][3], int current_row, int current_col, bool selected) {
+void TicTacToe::print_board_ncurses(const char board[3][3], int current_row, int current_col, bool selected) {
     clear();
     for (int i = 0; i < 3; ++i) {
         for (int j = 0; j < 3; ++j) {
@@ -29,7 +29,7 @@ void print_board_ncurses(const char board[3][3], int current_row, int current_co
     refresh();
 }
 
-bool is_moves_left(const char board[3][3]) {
+bool TicTacToe::is_moves_left(const char board[3][3]) {
     for (int i = 0; i < 3; ++i)
         for (int j = 0; j < 3; ++j)
             if (board[i][j] == '_')
@@ -37,7 +37,7 @@ bool is_moves_left(const char board[3][3]) {
     return false;
 }
 
-int evaluate(const char board[3][3]) {
+int TicTacToe::evaluate(const char board[3][3]) {
     // Check rows for victory
     for (int row = 0; row < 3; ++row) {
         if (board[row][0] == board[row][1] && board[row][1] == board[row][2]) {

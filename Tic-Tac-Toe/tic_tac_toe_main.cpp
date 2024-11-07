@@ -4,12 +4,6 @@
 #include "minimax.h"
 
 void tic_tac_toe_main() {
-    char board[3][3] = {
-        { '_', '_', '_' },
-        { '_', '_', '_' },
-        { '_', '_', '_' }
-    };
-
     initscr();
     cbreak();
     noecho();
@@ -17,15 +11,36 @@ void tic_tac_toe_main() {
     curs_set(0);
     start_color();
     init_pair(1, COLOR_YELLOW, COLOR_BLACK);
+    int max_x;
+    int max_y;
+    getmaxyx(stdscr, max_y, max_x);
+
+    clear();
+    mvprintw(max_y / 2 - 4, max_x / 2 - 15, "Welcome to Tic Tac Toe Game");
+    mvprintw(max_y / 2 - 3, max_x / 2 - 15, "Press any key to continue...");
+    refresh();
+    getch();
+    clear();
+
+    TicTacToe game;
+    Minimax ai;
+    char board[3][3] = {
+        { '_', '_', '_' },
+        { '_', '_', '_' },
+        { '_', '_', '_' }
+    };
 
     int current_row = 0, current_col = 0;
     bool selected = false;
 
-    print_board_ncurses(board, current_row, current_col, selected);
+    game.print_board_ncurses(board, current_row, current_col, selected);
 
     while (true) {
         int ch = getch();
         switch (ch) {
+            case 'q':
+                endwin();
+                return;
             case KEY_UP:
                 current_row = (current_row - 1 + 3) % 3;
                 break;
@@ -47,9 +62,9 @@ void tic_tac_toe_main() {
                 if (selected && board[current_row][current_col] == '_') {
                     board[current_row][current_col] = 'o';
                     selected = false;
-                    print_board_ncurses(board, current_row, current_col, selected);
+                    game.print_board_ncurses(board, current_row, current_col, selected);
 
-                    if (evaluate(board) == -10) {
+                    if (game.evaluate(board) == -10) {
                         mvprintw(7, 0, "You win!\nPress any key to exit.");
                         refresh();
                         getch();
@@ -57,7 +72,7 @@ void tic_tac_toe_main() {
                         return;
                     }
 
-                    if (!is_moves_left(board)) {
+                    if (!game.is_moves_left(board)) {
                         mvprintw(7, 0, "It's a draw!\nPress any key to exit.");
                         refresh();
                         getch();
@@ -65,11 +80,11 @@ void tic_tac_toe_main() {
                         return;
                     }
 
-                    Move best_move = find_best_move(board);
+                    Move best_move = ai.find_best_move(board);
                     board[best_move.row][best_move.col] = 'x';
-                    print_board_ncurses(board, current_row, current_col, selected);
+                    game.print_board_ncurses(board, current_row, current_col, selected);
 
-                    if (evaluate(board) == 10) {
+                    if (game.evaluate(board) == 10) {
                         mvprintw(7, 0, "AI wins!\nPress any key to exit.");
                         refresh();
                         getch();
@@ -77,7 +92,7 @@ void tic_tac_toe_main() {
                         return;
                     }
 
-                    if (!is_moves_left(board)) {
+                    if (!game.is_moves_left(board)) {
                         mvprintw(7, 0, "It's a draw!");
                         refresh();
                         getch();
@@ -87,7 +102,7 @@ void tic_tac_toe_main() {
                 }
                 break;
         }
-        print_board_ncurses(board, current_row, current_col, selected);
+        game.print_board_ncurses(board, current_row, current_col, selected);
     }
 
     endwin();
