@@ -16,7 +16,7 @@ in the future.
 |   Hangman   | Terminated |
 |    2048     | Completed  |
 | Tic-Tac-Toe | Completed  |
-| Snake Game  |  Planned   |
+| Snake Game  | Completed  |
 
 # Installation and Compilation
 
