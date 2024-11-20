@@ -17,6 +17,7 @@ in the future.
 |    2048     | Completed  |
 | Tic-Tac-Toe | Completed  |
 | Snake Game  | Completed  |
+|   Sudoku    |  Planned   |
 
 # Installation and Compilation
 
@@ -137,7 +138,7 @@ the features may be terminated.
 ## Maze Game
 
 * The game has a maze that the player needs to solve.
-* The player can move the character using the WSAD keys.
+* The player can move the character using the arrow keys.
 * The maze was generated randomly using the Depth-First Search algorithm.
 
 ## Minesweeper
@@ -147,6 +148,26 @@ the features may be terminated.
 * The player can flag the cells that contain mines.
 * The player can reveal the cells that do not contain mines.
 * The game has three difficulty levels: Easy, Medium, and Hard.
+
+## 2048
+
+* The game has a grid of cells that contain numbers.
+* The player needs to merge the cells to create a cell with the number 2048.
+* The player can move the cells using the arrow keys.
+* The game has a score system that keeps track of the player's score.
+
+## Tic-Tac-Toe
+
+* The game has a grid of cells that the player needs to fill with their symbol.
+* The player is playing against the computer with minimax algorithm.
+* The player can move the cursor using the arrow keys.
+
+## Snake Game
+
+* The game has a snake that the player needs to control with the arrow keys.
+* The snake needs to eat the food to grow.
+* The game has a score system that keeps track of the player's score.
+* The snake can go through the walls and appear on the opposite side.
 
 # Credit
 

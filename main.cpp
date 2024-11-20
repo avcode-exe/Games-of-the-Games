@@ -18,7 +18,7 @@ int display_menu_ncurses(const std::vector<std::string>& games) {
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
-    curs_set(0); // Hide the cursor
+    curs_set(0);
 
     int selected_item = 0;
     int max_y, max_x;
