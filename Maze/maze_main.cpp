@@ -76,8 +76,8 @@ void maze_main() {
             difficulty = choice + 1;
             size = difficulties[difficulty - 1];
             break;
-	}
-}
+    	}
+    }
 
     Maze maze(size);
     maze.generate_maze(maze.start_x, maze.start_y);

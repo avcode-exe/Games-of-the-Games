@@ -3,6 +3,7 @@
 #include <vector>
 #include <ncurses.h>
 #include "game_header.h"
+#include "Snake/snake_game.h" // Correct the include path
 
 /**
  * @brief Displays an interactive menu using ncurses.
@@ -17,7 +18,7 @@ int display_menu_ncurses(const std::vector<std::string>& games) {
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
-    curs_set(0); // Hide the cursor
+    curs_set(0);
 
     int selected_item = 0;
     int max_y, max_x;
@@ -29,6 +30,7 @@ int display_menu_ncurses(const std::vector<std::string>& games) {
     while (true) {
         clear();
         mvprintw(max_y / 2 - 4, max_x / 2 - 15, "Welcome to Games of the Games!");
+        box(stdscr, 0, 0); // Add border
 
         for (size_t i = 0; i < menu_items.size(); ++i) {
             if (i == selected_item) {
@@ -60,7 +62,7 @@ int display_menu_ncurses(const std::vector<std::string>& games) {
 }
 
 int main() {
-    const std::vector<std::string> games = {"Maze", "Minesweeper", "2048", "Tic-Tac-Toe"};
+    const std::vector<std::string> games = {"Maze", "Minesweeper", "2048", "Tic-Tac-Toe", "Snake"};
 
     while (true) {
         int choice = display_menu_ncurses(games);
@@ -71,6 +73,7 @@ int main() {
             getmaxyx(stdscr, max_y, max_x);
             mvprintw(max_y / 2, (max_x - 10) / 2, "Thanks for playing!");
             mvprintw(max_y / 2 + 1, (max_x - 10) / 2 - 2, "Press any key to exit...");
+            box(stdscr, 0, 0); // Add border
             refresh();
             getch();
             endwin();
@@ -85,6 +88,8 @@ int main() {
                 TwoZeroFourEight_main();
             } else if (choice == 3) {
                 tic_tac_toe_main();
+            } else if (choice == 4) {
+                snake_main();
             }
         }
         refresh();
