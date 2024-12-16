@@ -3,7 +3,7 @@
 #include <vector>
 #include <ncurses.h>
 #include "game_header.h"
-#include "Snake/snake_game.h" // Correct the include path
+#include "Snake/snake_game.h"
 
 /**
  * @brief Displays an interactive menu using ncurses.
@@ -14,7 +14,10 @@
  * @return The index of the selected game (0-based), or -1 if the user quits.
  */
 int display_menu_ncurses(const std::vector<std::string>& games) {
-    initscr();
+    if (initscr() == NULL) {
+        fprintf(stderr, "Error initializing ncurses.\n");
+        exit(EXIT_FAILURE);
+    }
     cbreak();
     noecho();
     keypad(stdscr, TRUE);
@@ -85,7 +88,7 @@ int main() {
             } else if (choice == 1) {
                 minesweeper_main();
             } else if (choice == 2) {
-                TwoZeroFourEight_main();
+                two_zero_four_eight_main();
             } else if (choice == 3) {
                 tic_tac_toe_main();
             } else if (choice == 4) {

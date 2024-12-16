@@ -27,7 +27,10 @@ void minesweeper_main() {
     const std::vector<std::vector<int>> difficulties = {{10, 10, 20}, {16, 16, 40}, {16, 30, 80}};
     std::vector<std::string> difficulty_levels = {"Easy", "Medium", "Hard", "Quit / Exit"};
 
-    initscr();
+    if (initscr() == NULL) {
+        fprintf(stderr, "Error initializing ncurses.\n");
+        exit(EXIT_FAILURE);
+    }
     cbreak();
     noecho();
     curs_set(0);

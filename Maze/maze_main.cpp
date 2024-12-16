@@ -34,7 +34,11 @@ void maze_main() {
 	int difficulty = 0;
 	std::vector<int> difficulties = {11, 21, 31};
     std::vector<std::string> difficulty_levels = {"Easy (11x11)", "Medium (21x21)", "Hard (31x31)", "Quit / Exit"};
-	initscr();
+
+    if (initscr() == NULL) {
+        fprintf(stderr, "Error initializing ncurses.\n");
+        exit(EXIT_FAILURE);
+    }
 	cbreak();
 	noecho();
     curs_set(0);

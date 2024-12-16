@@ -4,7 +4,10 @@
 #include "minimax.h"
 
 void tic_tac_toe_main() {
-    initscr();
+    if (initscr() == NULL) {
+        fprintf(stderr, "Error initializing ncurses.\n");
+        exit(EXIT_FAILURE);
+    }
     cbreak();
     noecho();
     keypad(stdscr, TRUE);

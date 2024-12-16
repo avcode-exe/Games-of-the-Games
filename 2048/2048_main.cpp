@@ -14,12 +14,15 @@
  *
  * @return int Returns 0 upon successful completion of the game.
  */
-int TwoZeroFourEight_main() {
+int two_zero_four_eight_main() {
     int difficulty = 0;
     const std::vector<int> difficulties = {8, 6, 4};
     std::vector<std::string> difficulty_levels = {"Easy (8x8)", "Medium (6x6)", "Hard (4x4)", "Quit / Exit"};
 
-    initscr();
+    if (initscr() == NULL) {
+        fprintf(stderr, "Error initializing ncurses.\n");
+        exit(EXIT_FAILURE);
+    }
     cbreak();
     noecho();
     curs_set(0);
